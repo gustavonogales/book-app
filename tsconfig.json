@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "allowJs": true,
+    "outDir": "./dist",
+    "moduleResolution": "Node",
+    "rootDir": "./src",
+    "strict": true,
+    "lib": ["esnext"],
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": [
+    "./coverage",
+    "**/*.js"
+  ]
+}
