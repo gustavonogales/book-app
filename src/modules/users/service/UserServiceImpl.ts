@@ -4,7 +4,7 @@ import produce from 'immer';
 import AppError from '../../../configs/AppError';
 import HashProvider from '../../../providers/HashProvider/HashProvider';
 import { UserRepository } from '../repository/UserRepository';
-import { UserDTO, User, UserUpdatePayload } from '../types';
+import { UserUpdatePayload, UserCreatePayload, UserView } from '../types';
 import { UserService } from './UserService';
 
 @injectable()
@@ -17,7 +17,7 @@ export class UserServiceImpl implements UserService {
     private hashProvider: HashProvider,
   ) { }
 
-  async create(data: UserDTO): Promise<User> {
+  async create(data: UserCreatePayload): Promise<UserView> {
     const foundUser = await this.userRepository.findByEmail(data.email);
 
     if (foundUser) {
@@ -26,7 +26,7 @@ export class UserServiceImpl implements UserService {
 
     const encryptedPassword = await this.hashProvider.generateHash(data.password);
 
-    const payload: UserDTO = {
+    const payload = {
       ...data,
       password: encryptedPassword,
     }
@@ -35,14 +35,14 @@ export class UserServiceImpl implements UserService {
       id, active, createdAt, updatedAt, email, name,
     } = await this.userRepository.create(payload)
 
-    const user: User = {
+    const user = {
       id, active, createdAt, updatedAt, email, name,
     }
 
     return user;
   }
 
-  async update(id: string, data: UserUpdatePayload): Promise<User> {
+  async update(id: string, data: UserUpdatePayload): Promise<UserView> {
     let isOldPasswordValid = false;
     let isNewPasswordValid = false;
 
@@ -86,7 +86,7 @@ export class UserServiceImpl implements UserService {
       active, createdAt, updatedAt, email, name,
     } = await this.userRepository.update(id, payload)
 
-    const user: User = {
+    const user = {
       id, active, createdAt, updatedAt, email, name,
     }
 

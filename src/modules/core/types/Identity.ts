@@ -1,6 +1,4 @@
-import { UserDTO } from './UserDTO';
-
-export type UserDAO = UserDTO & {
+export type Identity = {
   id: string;
   createdAt: Date;
   updatedAt: Date;

@@ -1,4 +1,3 @@
-export { UserUpdatePayload } from './UserUpdatePayload'
-export { UserDAO } from './UserDAO';
-export { UserDTO } from './UserDTO';
-export { User } from './User';
+export { UserView } from './UserView';
+export { UserCreatePayload } from './UserCreatePayload';
+export { UserUpdatePayload } from './UserUpdatePayload';
